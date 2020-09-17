@@ -1,0 +1,16 @@
+h1 {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.infobox {
+  margin-right: 20px;
+  margin-bottom: 20px;
+  width: 40vw;
+  height: 30px;
+}

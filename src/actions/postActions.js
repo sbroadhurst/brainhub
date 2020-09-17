@@ -1,7 +1,7 @@
 import { FETCH_FORMS, NEW_FORM } from './types'
 
 export const fetchForms = () => (dispatch) => {
-  fetch('https://jsonplaceholder.typicode.com/posts')
+  fetch('http://localhost:3001/forms')
     .then((res) => res.json())
     .then((forms) =>
       dispatch({
@@ -12,7 +12,7 @@ export const fetchForms = () => (dispatch) => {
 }
 
 export const createForm = (postData) => (dispatch) => {
-  fetch('https://jsonplaceholder.typicode.com/posts', {
+  fetch('http://localhost:3001/forms', {
     method: 'POST',
     headers: {
       'content-type': 'application/json',

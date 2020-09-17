@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTytpes from 'prop-types'
 import { connect } from 'react-redux'
 import { createForm } from '../actions/postActions'
+import './forms.css'
 
 class PostForm extends Component {
   state = {
@@ -32,21 +33,45 @@ class PostForm extends Component {
       <div>
         <h1>Submit A Form</h1>
         <form onSubmit={this.onSubmit}>
-          <div>
-            <label>First Name</label> <br></br>
-            <input type="text" name="firstName" value={this.state.firstName} onChange={this.onChange}></input>
+          <div className="row">
+            <div>
+              <label>First Name</label> <br></br>
+              <input
+                type="text"
+                name="firstName"
+                className="infobox"
+                value={this.state.firstName}
+                onChange={this.onChange}></input>
+            </div>
+            <div>
+              <label>Last Name</label> <br></br>
+              <input
+                type="text"
+                name="lastName"
+                className="infobox"
+                value={this.state.lastName}
+                onChange={this.onChange}></input>
+            </div>
           </div>
-          <div>
-            <label>Last Name</label> <br></br>
-            <input type="text" name="lastName" value={this.state.lastName} onChange={this.onChange}></input>
-          </div>
-          <div>
-            <label>Email</label> <br></br>
-            <input type="email" name="email" value={this.state.email} onChange={this.onChange}></input>
-          </div>
-          <div>
-            <label>Event date</label> <br></br>
-            <input type="date" name="date" value={this.state.date} onChange={this.onChange}></input>
+          <div className="row">
+            <div>
+              <label>Email</label> <br></br>
+              <input
+                type="email"
+                name="email"
+                value={this.state.email}
+                className="infobox"
+                onChange={this.onChange}></input>
+            </div>
+            <div>
+              <label>Event date</label> <br></br>
+              <input
+                type="date"
+                name="date"
+                value={this.state.date}
+                className="infobox"
+                onChange={this.onChange}></input>
+            </div>
           </div>
           <button type="submit">Submit</button>
         </form>

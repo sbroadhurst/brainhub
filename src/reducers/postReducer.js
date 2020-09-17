@@ -10,7 +10,7 @@ export default function (state = initialState, action) {
     case FETCH_FORMS:
       return {
         ...state,
-        items: action.payload,
+        items: action.payload.doc,
       }
     case NEW_FORM:
       return {

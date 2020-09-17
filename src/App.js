@@ -12,7 +12,7 @@ function App() {
     <Provider store={store}>
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img width="100%" src={logo} className="App-logo" alt="logo" />
         </header>
         <PostForm />
         <br />
