@@ -1,0 +1,110 @@
+openapi: 3.0.1
+info:
+  title: API
+  description: API endpoints for brainhub test
+  version: 1.0.0
+
+servers:
+  - url: 'http://localhost:3001/'
+components:
+  schemas:
+    # <--- user info model --->
+    UserInfo:
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: exmapleFirst
+        lastName:
+          type: string
+          example: exampleLast
+        email:
+          type: string
+          example: example@email.com
+        date:
+          type: string
+          example: 01-01-2021
+
+paths:
+  /forms:
+    get:
+      tags:
+        - userinfo
+      summary: 'get all user info'
+      responses:
+        200:
+          description: 'OK'
+    post:
+      tags:
+        - userinfo
+      summary: 'add new user info'
+      responses:
+        200:
+          description: 'OK'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInfo'
+
+  /forms/{id}:
+    get:
+      tags:
+        - userinfo
+      summary: 'get userinfo by id'
+      parameters:
+        - name: id
+          in: path
+          description: 'The id that needs to be fetched'
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'OK'
+    put:
+      tags:
+        - userinfo
+      summary: 'update user info by id'
+      parameters:
+        - name: id
+          in: path
+          description: 'The id that needs to be updated'
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                  example: updatedFirstName
+                lastName:
+                  type: string
+                  example: updatedLastName
+                email:
+                  type: string
+                  example: updated@email.com
+                date:
+                  type: string
+                  example: 02-02-2022
+      responses:
+        200:
+          description: 'OK'
+    delete:
+      tags:
+        - userinfo
+      summary: 'delete user info by id'
+      parameters:
+        - name: id
+          in: path
+          description: 'The user id that needs to be deleted'
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'OK'

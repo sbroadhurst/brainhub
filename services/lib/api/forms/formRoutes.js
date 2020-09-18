@@ -28,9 +28,11 @@ const crud = function (router, cb) {
 
   const update = async function (req, res) {
     const { id } = req.params
-    const doc = await Form.update({ _id: id }, { $set: { firstName: 'updatedName' } })
+    console.log(id)
+    const { ...payload } = req.body
+    await Form.findOneAndUpdate({ _id: id }, { $set: { ...payload } })
 
-    res.status(200).json(doc)
+    res.status(200).json(req.body)
   }
 
   const deleteDoc = async function (req, res) {

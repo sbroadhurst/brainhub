@@ -8,6 +8,7 @@ exports.mongoConnect = async function (cb) {
     await mongoose.connect(`${mongo}`, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      useFindAndModify: false,
     })
 
     console.log(`connected to ${mongo}`)

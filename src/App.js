@@ -4,7 +4,7 @@ import './App.css'
 import { Provider } from 'react-redux'
 
 import Posts from './components/Posts'
-import PostForm from './components/PostForm'
+import PostForm from './components/UserInfo'
 import store from './store'
 
 function App() {

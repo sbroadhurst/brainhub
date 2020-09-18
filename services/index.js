@@ -2,7 +2,12 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const helmet = require('helmet')
 const cors = require('cors')
+const swaggerUi = require('swagger-ui-express')
 const mongoConnect = require('./mongoConnect').mongoConnect
+
+const YAML = require('yamljs')
+const swaggerConfig = YAML.load('./swagger-config.yaml')
+
 const port = process.env.PORT || 3001
 
 const app = express()
@@ -22,6 +27,7 @@ app.get('/', (req, res, next) => {
   res.send('Welcome to mongodb in node brainhub')
 })
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig))
 app.use('/forms', require('./lib/api/forms/formRoutes'))
 
 app.listen(port)

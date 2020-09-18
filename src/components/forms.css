@@ -10,7 +10,12 @@ h1 {
 
 .infobox {
   margin-right: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   width: 40vw;
   height: 30px;
+}
+
+.error {
+  color: red;
+  margin-bottom: 10px;
 }
