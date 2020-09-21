@@ -49,7 +49,6 @@ describe('Testing server', function () {
       .put(`/forms/${userinfoId}`)
       .send({ firstName: 'updatedFirst', lastName: 'updatedLast', email: 'updated@email.com', date: '2010-10-10' })
       .end((err, res) => {
-        console.log(res)
         assert.equal(res.status, '200')
         assert.isObject(res.body)
         done()
