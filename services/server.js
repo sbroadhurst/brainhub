@@ -6,6 +6,7 @@ const mongoConnect = require('./mongoConnect').mongoConnect
 const swaggerUi = require('swagger-ui-express')
 
 const YAML = require('yamljs')
+const swaggerConfig = YAML.load('./swagger-config.yaml')
 
 const port = process.env.PORT || 3001
 
@@ -26,11 +27,8 @@ app.get('/', (req, res, next) => {
   res.send('Welcome to mongodb in node brainhub')
 })
 
-if (process.env.NODE_ENV != 'test') {
-  console.log('not testing')
-  const swaggerConfig = YAML.load('./swagger-config.yaml')
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig))
-}
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig))
+
 app.use('/forms', require('./lib/api/forms/formRoutes'))
 
 app.listen(port)
