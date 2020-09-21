@@ -16,7 +16,7 @@ const userinfoMock = {
   firstName: 'mockFirst',
   lastName: 'mockLast',
   email: 'mock@email.com',
-  date: '09/09/2099',
+  date: '2099-09-09',
 }
 
 describe('Testing server', function () {
@@ -46,8 +46,8 @@ describe('Testing server', function () {
   it(`Updating userinfo`, (done) => {
     chai
       .request(server)
-      .put(`forms/${userinfoId}`)
-      .send({ firstName: 'updatedFirst', lastName: 'updatedLast', email: 'updated@email.com', date: '10-10-2010' })
+      .put(`/forms/${userinfoId}`)
+      .send({ firstName: 'updatedFirst', lastName: 'updatedLast', email: 'updated@email.com', date: '2010-10-10' })
       .end((err, res) => {
         console.log(res)
         assert.equal(res.status, '200')
