@@ -4,57 +4,47 @@ const { validateBody } = require('../../validate')
 const formValidate = require('./formValidate').schemas.form
 const Form = require('./formModel')
 
-const crud = function (router, cb) {
-  const create = async function (req, res) {
-    const { ...payload } = req.body
-    const doc = new Form({ ...payload })
-    await doc.save()
+const createHandler = async function (req, res) {
+  const { ...payload } = req.body
+  const doc = new Form({ ...payload })
+  await doc.save()
 
-    res.status(200).json({ _id: doc._id, ...payload })
-  }
-
-  const get = async function (req, res) {
-    const { id } = req.params
-    const doc = await Form.findById(id)
-
-    res.status(200).json(doc)
-  }
-
-  const getAll = async function (req, res) {
-    const doc = await Form.find().sort({ updatedAt: -1 })
-
-    res.status(200).json({ doc })
-  }
-
-  const update = async function (req, res) {
-    const { id } = req.params
-    console.log(id)
-    const { ...payload } = req.body
-    await Form.findOneAndUpdate({ _id: id }, { $set: { ...payload } })
-
-    res.status(200).json(req.body)
-  }
-
-  const deleteDoc = async function (req, res) {
-    const { id } = req.params
-    await Form.deleteOne({ _id: id })
-
-    res.status(200).send({ message: `Deleted ${id}` })
-  }
-
-  if (cb.validate) {
-    router.route(`/`).post(cb.validate(), cb.create ? cb.create : create)
-  }
-  router.route(`/:id`).get(cb.get ? cb.get : get)
-  router.route(`/`).get(cb.getAll ? cb.getAll : getAll)
-  router.route(`/:id`).put(cb.update ? cb.update : update)
-  router.route(`/:id`).delete(cb.deleteDoc ? cb.deleteDoc : deleteDoc)
+  res.status(200).json({ _id: doc._id, ...payload })
 }
 
-crud(router, {
-  validate: function () {
-    return validateBody(formValidate)
-  },
-})
+const getHandler = async function (req, res) {
+  const { id } = req.params
+  const doc = await Form.findById(id)
+
+  res.status(200).json(doc)
+}
+
+const getAllHandler = async function (req, res) {
+  const doc = await Form.find().sort({ updatedAt: -1 })
+
+  res.status(200).json({ doc })
+}
+
+const updateHandler = async function (req, res) {
+  const { id } = req.params
+  console.log(id)
+  const { ...payload } = req.body
+  await Form.findOneAndUpdate({ _id: id }, { $set: { ...payload } })
+
+  res.status(200).json(req.body)
+}
+
+const deleteDocHandler = async function (req, res) {
+  const { id } = req.params
+  await Form.deleteOne({ _id: id })
+
+  res.status(200).send({ message: `Deleted ${id}` })
+}
+
+router.route(`/`).post(validateBody(formValidate), createHandler)
+router.route(`/:id`).get(getHandler)
+router.route(`/`).get(getAllHandler)
+router.route(`/:id`).put(updateHandler)
+router.route(`/:id`).delete(deleteDocHandler)
 
 module.exports = router

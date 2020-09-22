@@ -1,7 +1,7 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import { render, fireEvent, wait } from '@testing-library/react'
-import UserInfo from './UserInfo'
+import UserInfo from '../components/UserInfo'
 import configureStore from 'redux-mock-store'
 import { expect, should, assert } from 'chai'
 

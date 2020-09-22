@@ -19,7 +19,35 @@ const userinfoMock = {
   date: '2099-09-09',
 }
 
+const badMock = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  date: '',
+}
+
 describe('Testing server', function () {
+  it(`Testing the default route`, (done) => {
+    chai
+      .request(server)
+      .get(`/`)
+      .end((_err, res) => {
+        assert.equal(res.status, '200')
+        done()
+      })
+  })
+  it(`Creating a bad post request userinfo, should return an error`, (done) => {
+    chai
+      .request(server)
+      .post(`/forms`)
+      .send(badMock)
+      .end((err, res) => {
+        assert.isNull(err)
+        assert.equal(res.status, '400')
+        assert.isObject(res.body)
+        done()
+      })
+  })
   it(`Creating a new userinfo`, (done) => {
     chai
       .request(server)

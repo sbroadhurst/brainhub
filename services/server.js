@@ -7,6 +7,7 @@ const swaggerUi = require('swagger-ui-express')
 
 const YAML = require('yamljs')
 const swaggerConfig = YAML.load('./swagger-config.yaml')
+require('dotenv').config()
 
 const port = process.env.PORT || 3001
 
@@ -19,7 +20,9 @@ async function startUp() {
 
 startUp()
 
+// helmet helps secure Express apps with various HTTP headers
 app.use(helmet())
+// cors allows for cross server domain usage
 app.use(cors())
 app.use(bodyParser.json())
 

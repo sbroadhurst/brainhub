@@ -1,7 +1,8 @@
 const mongoose = require('mongoose')
 
 exports.mongoConnect = async function (cb) {
-  const mongo = `mongodb+srv://stephen:Pbdb3370%21@cluster0.ago5c.mongodb.net/brainhub?retryWrites=true&w=majority`
+  const mongo = `mongodb+srv://${process.env.REACT_APP_MONGO_USER_PASSWORD}${process.env.REACT_APP_MONGO_URL}`
+
   try {
     console.log(`checking ${mongo}`)
 
