@@ -1,42 +1,52 @@
 import React from 'react'
-import { mount } from 'enzyme'
 import { Provider } from 'react-redux'
 import Posts from '../components/Posts'
 import { render } from '@testing-library/react'
-import Enzyme, { shallow } from 'enzyme'
+import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import configureStore from 'redux-mock-store'
 import { fetchForms } from '../actions/postActions'
+import thunk from 'redux-thunk'
 
-console.log('test')
+const middlewares = [thunk]
 
-// const mockStore = configureStore([])
+const mockStore = configureStore(middlewares)
 
-// Enzyme.configure({ adapter: new Adapter() })
+Enzyme.configure({ adapter: new Adapter() })
 
-// describe('Posts component', () => {
-//   const data = [{ firstName: 'test', lastName: 'testlast', email: 'email@email.com', date: '2020-11-11' }]
-//   let store = mockStore({
-//     items: [],
-//     item: {},
-//   })
+describe('Posts component', () => {
+  const data = [{ firstName: 'test', lastName: 'testlast', email: 'email@email.com', date: '2020-11-11' }]
+  let store = mockStore({
+    posts: {
+      items: [],
+      item: {},
+    },
+  })
 
-//   let component = render(
-//     <Provider store={store}>
-//       <Posts props={fetchForms} />
-//     </Provider>
-//   )
+  // function fetchForms() {
+  //   console.log('fetch forms inside here')
+  // }
 
-//   beforeEach(() => {
-//     store = mockStore({
-//       items: [],
-//       item: {},
-//     })
-//   })
+  let component = render(
+    <Provider store={store}>
+      <Posts fetchForms={fetchForms} />
+    </Provider>
+  )
 
-//   it('should check `componentDidMount()`', () => {
-//     const instance = component.instance() // you assign your instance of the wrapper
+  beforeEach(() => {
+    store = mockStore({
+      posts: {
+        items: [],
+        item: {},
+      },
+    })
+  })
 
-//     expect(instance.componentDidMount).toHaveBeenCalledTimes(1) // You check if the condition you want to match is correct.
-//   })
-// })
+  it('should check `componentDidMount()`', () => {
+    const spy = jest.spyOn(Posts.WrappedComponent.prototype, 'componentDidMount')
+
+    const methodNameFake = jest
+      .spyOn(component.prototype, 'fetchForms')
+      .mockImplementation(() => console.log('this is the mock'))
+  })
+})
