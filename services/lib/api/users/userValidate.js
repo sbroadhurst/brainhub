@@ -2,7 +2,7 @@ const joi = require('joi')
 
 module.exports = {
   schemas: {
-    form: joi
+    user: joi
       .object()
       .keys({
         firstName: joi.string().required(),

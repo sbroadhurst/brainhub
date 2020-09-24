@@ -39,7 +39,7 @@ describe('Testing server', function () {
   it(`Creating a bad post request userinfo, should return an error`, (done) => {
     chai
       .request(server)
-      .post(`/forms`)
+      .post(`/users`)
       .send(badMock)
       .end((err, res) => {
         assert.isNull(err)
@@ -51,7 +51,7 @@ describe('Testing server', function () {
   it(`Creating a new userinfo`, (done) => {
     chai
       .request(server)
-      .post(`/forms`)
+      .post(`/users`)
       .send(userinfoMock)
       .end((err, res) => {
         assert.isNull(err)
@@ -65,7 +65,7 @@ describe('Testing server', function () {
   it(`Getting all userinfo`, (done) => {
     chai
       .request(server)
-      .get(`/forms`)
+      .get(`/users`)
       .end((_err, res) => {
         assert.equal(res.status, '200')
         done()
@@ -74,7 +74,7 @@ describe('Testing server', function () {
   it(`Updating userinfo`, (done) => {
     chai
       .request(server)
-      .put(`/forms/${userinfoId}`)
+      .put(`/users/${userinfoId}`)
       .send({ firstName: 'updatedFirst', lastName: 'updatedLast', email: 'updated@email.com', date: '2010-10-10' })
       .end((err, res) => {
         assert.equal(res.status, '200')
@@ -85,7 +85,7 @@ describe('Testing server', function () {
   it(`Get a single userinfo`, (done) => {
     chai
       .request(server)
-      .get(`/forms/${userinfoId}`)
+      .get(`/users/${userinfoId}`)
       .end((_err, res) => {
         assert.equal(res.status, '200')
         done()
@@ -95,7 +95,7 @@ describe('Testing server', function () {
   it(`Deleting a single userinfo`, (done) => {
     chai
       .request(server)
-      .delete(`/forms/${userinfoId}`)
+      .delete(`/users/${userinfoId}`)
       .end((_err, res) => {
         assert.equal(res.status, '200')
         done()

@@ -32,7 +32,7 @@ app.get('/', (req, res, next) => {
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig))
 
-app.use('/forms', require('./lib/api/forms/formRoutes'))
+app.use('/users', require('./lib/api/users/userRoutes'))
 
 app.listen(port)
 

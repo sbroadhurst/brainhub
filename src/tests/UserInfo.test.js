@@ -3,14 +3,14 @@ import { Provider } from 'react-redux'
 import { render, fireEvent, wait } from '@testing-library/react'
 import UserInfo from '../components/UserInfo'
 import configureStore from 'redux-mock-store'
-import { expect, should, assert } from 'chai'
+import { expect, assert } from 'chai'
 
 const mockStore = configureStore([])
 
 describe('Form testing', () => {
   let store = mockStore({
-    items: [],
-    item: {},
+    users: [],
+    user: {},
   })
   let component = render(
     <Provider store={store}>
@@ -20,8 +20,8 @@ describe('Form testing', () => {
 
   beforeEach(() => {
     store = mockStore({
-      items: [],
-      item: {},
+      users: [],
+      user: {},
     })
   })
 

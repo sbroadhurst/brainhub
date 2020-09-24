@@ -3,8 +3,8 @@ import logo from './brainhubLogo.jpg'
 import './App.css'
 import { Provider } from 'react-redux'
 
-import Posts from './components/Posts'
-import PostForm from './components/UserInfo'
+import Users from './components/Users'
+import UserInfo from './components/UserInfo'
 import store from './store'
 
 function App() {
@@ -14,10 +14,10 @@ function App() {
         <header className="App-header">
           <img width="100%" src={logo} className="App-logo" alt="logo" />
         </header>
-        <PostForm />
+        <UserInfo />
         <br />
 
-        <Posts />
+        <Users />
       </div>
     </Provider>
   )

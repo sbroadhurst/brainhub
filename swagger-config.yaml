@@ -26,7 +26,7 @@ components:
           example: 01-01-2021
 
 paths:
-  /forms:
+  /users:
     get:
       tags:
         - userinfo
@@ -47,7 +47,7 @@ paths:
             schema:
               $ref: '#/components/schemas/UserInfo'
 
-  /forms/{id}:
+  /users/{id}:
     get:
       tags:
         - userinfo

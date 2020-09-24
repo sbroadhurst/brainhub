@@ -1,7 +1,7 @@
 import React from 'react'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
-import { createForm } from '../actions/postActions'
+import { createUserInfo } from '../actions/userActions'
 import { connect } from 'react-redux'
 import './forms.css'
 
@@ -12,19 +12,19 @@ const validationSchema = Yup.object({
   date: Yup.string().required('Required'),
 })
 
-function PostForm(props) {
+function UserInfo(props) {
   return (
     <Formik
       initialValues={{ firstName: '', lastName: '', email: '', date: '' }}
       validationSchema={validationSchema}
       onSubmit={(values) => {
-        const post = {
+        const user = {
           firstName: values.firstName,
           lastName: values.lastName,
           email: values.email,
           date: values.date,
         }
-        props.createForm(post)
+        props.createUserInfo(user)
       }}>
       {({ handleSubmit, handleChange, values, errors, touched }) => (
         <form data-testid="form" onSubmit={handleSubmit}>
@@ -105,4 +105,4 @@ function PostForm(props) {
   )
 }
 
-export default connect(null, { createForm })(PostForm)
+export default connect(null, { createUserInfo })(UserInfo)

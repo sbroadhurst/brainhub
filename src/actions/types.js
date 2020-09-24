@@ -1,2 +1,2 @@
-export const FETCH_FORMS = 'FETCH_FORMS'
-export const NEW_FORM = 'NEW_FORM'
+export const FETCH_USERS = 'FETCH_USERS'
+export const NEW_USER = 'NEW_USER'
